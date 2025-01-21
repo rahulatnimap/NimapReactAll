@@ -18,9 +18,7 @@ class MountingHooks extends Component {
     }
 
     render() {
-        return (<div> {this.state.counter}
-            <button onClick={this.handleIncrement}>Increment</button>
-        </div>)
+         
     }
 }
 
