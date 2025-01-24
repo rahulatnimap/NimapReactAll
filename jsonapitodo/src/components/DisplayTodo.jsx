@@ -5,58 +5,104 @@ const DisplayTodo = () => {
     const [todo, setTodo] = useState([]);
     const [addtodo, setAddtodo] = useState("");
     const [loading, setLoading] = useState(false);
-    const [status, setStatus] = useState(false)
-    // const maxuser = todo.reduce((cur, acc) => Math.max(cur, acc.userId), 0);
-
-
+    const [editId, setEditId] = useState({});
+    const [iscompleted, setIscompleted] = useState(true);
 
     async function handleSubmit(e) {
         e.preventDefault();
         if (!addtodo.trim()) return;
-        let newtodo = {
-            id: String(todo.length + 1),
-            todo: addtodo,
-            completed: false,
-            userId: Date.now()
-        }
-        // console.log(newtodo);
-        setAddtodo("")
+        if (Object.keys(editId).length) {
+            const updatedTodo = todo.map((elemets) => {
+                if (elemets.id === editId.id) {
+                    return { ...elemets, todo: addtodo }
+                }
+                return elemets;
+            })
+            console.log("updated res:", updatedTodo)
 
-        await fetch("http://localhost:3000/todos",
+            try {
+
+                await fetch(`http://localhost:3000/todos/${editId.id}`,
+                    {
+                        method: "PUT"
+                        ,
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ id: editId.id, todo: addtodo, completed: iscompleted, userId: editId.userId })
+                    }
+                )
+                setTodo(updatedTodo);
+                setAddtodo("");
+                setEditId({})
+
+            } catch (error) {
+                alert(error)
+            }
+
+        } else {
+            let newtodo = {
+                id: String(todo.length + 1),
+                todo: addtodo,
+                completed: false,
+                userId: Date.now()
+            }
+
+            setAddtodo("")
+
+            await fetch("http://localhost:3000/todos",
+                {
+                    method: "POST"
+                    ,
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newtodo)
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => setTodo([...todo, data]))
+
+        }
+    }
+
+    async function handleDelete(item) {
+        const todoupdate = todo.filter((items) => items.id !== item);
+
+
+        await fetch(`http://localhost:3000/todos/${item}`,
             {
-                method: "POST"
+                method: "DELETE"
                 ,
                 headers: {
                     "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newtodo)
+                }
             }
         )
-            .then((response) => response.json())
-            .then((data) => setTodo([...todo, data]))
+        setTodo(todoupdate)
 
     }
 
-    async function handleDelete(index){
-       const todoupdate =  todo.filter((item) => item.id !==index );
+    function handleEdit(item) {
+        setAddtodo(item.todo)
+        setEditId(item)
+    }
 
-       await fetch("http://localhost:3000/todos",
-        {
-            method: "POST"
-            ,
+    async function handleCompleted(item) {
+        console.log(item);
+        setIscompleted((prev) => !prev);
+        console.log(iscompleted);
+        
+        
+        await fetch(`http://localhost:3000/todos/${item.id}`, {
+            method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "content-Type": "application/json"
             },
-            body: JSON.stringify(todoupdate)
-        }
-    )
-        .then((response) => response.json())
-        //.then((data) => console.log(data))
-        .then((data) => setTodo([data]))
-        //console.log("response")
+            body: JSON.stringify({ ...item ,  completed : iscompleted })
+        })
+        
     }
-
-
 
 
     async function fetchTodo() {
@@ -64,7 +110,7 @@ const DisplayTodo = () => {
             setLoading(false)
             const response = await fetch("http://localhost:3000/todos");
             const data = await response.json();
-            console.log("data",data)
+            // console.log("data", data)
             setTodo(data);
         } catch (error) {
             console.log(error.message);
@@ -75,7 +121,7 @@ const DisplayTodo = () => {
 
     useEffect(() => {
         fetchTodo();
-    }, [])
+    }, [iscompleted])
 
 
     return (
@@ -85,7 +131,18 @@ const DisplayTodo = () => {
                 <input onChange={(e) => setAddtodo(e.target.value)} value={addtodo} type="text" name="" id="" />
                 <button type='submit' >Add Todo</button>
             </form>
-            {loading ? <ul>{todo?.map((item) => (<li key={item.id} style={{textDecoration :  !item.completed ? "none" : "line-through"}} >{item.todo} <button onClick={handleDelete}>Delete</button></li> ))}</ul> : <h1>Loading...</h1>}</div>
+            {loading ? <ul>{todo?.map((item, index) => (<li
+                key={index}
+                style={{ textDecoration: !item.completed ? "none" : "line-through" }} >
+                {item.todo}
+                <button onClick={() => handleDelete(item.id)}>
+                    Delete</button>
+                <button onClick={() => handleEdit(item)}>
+                    Edit</button>
+                <button onClick={() =>{  handleCompleted(item)}}>
+                    Completed</button></li>))}
+            </ul>
+                : <h1>Loading...</h1>}</div>
     )
 }
 
