@@ -6,7 +6,6 @@ const DisplayTodo = () => {
     const [addtodo, setAddtodo] = useState("");
     const [loading, setLoading] = useState(false);
     const [editId, setEditId] = useState({});
-    const [iscompleted, setIscompleted] = useState(true);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -29,7 +28,7 @@ const DisplayTodo = () => {
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: JSON.stringify({ id: editId.id, todo: addtodo, completed: iscompleted, userId: editId.userId })
+                        body: JSON.stringify({ ...editId , todo : addtodo })
                     }
                 )
                 setTodo(updatedTodo);
@@ -67,8 +66,9 @@ const DisplayTodo = () => {
     }
 
     async function handleDelete(item) {
+        console.log(item);
+        
         const todoupdate = todo.filter((items) => items.id !== item);
-
 
         await fetch(`http://localhost:3000/todos/${item}`,
             {
@@ -79,7 +79,8 @@ const DisplayTodo = () => {
                 }
             }
         )
-        setTodo(todoupdate)
+        setTodo(todoupdate);
+        
 
     }
 
@@ -90,8 +91,16 @@ const DisplayTodo = () => {
 
     async function handleCompleted(item) {
         console.log(item);
-        setIscompleted((prev) => !prev);
-        console.log(iscompleted);
+        
+        const updatedTodo = todo.map((elemets) => {
+            if (elemets.id === item.id) {
+                console.log(elemets);
+                
+                return { ...elemets, completed: !elemets.completed }
+            }
+            return elemets;
+        })
+        console.log("updated res:", updatedTodo)
         
         
         await fetch(`http://localhost:3000/todos/${item.id}`, {
@@ -99,9 +108,11 @@ const DisplayTodo = () => {
             headers: {
                 "content-Type": "application/json"
             },
-            body: JSON.stringify({ ...item ,  completed : iscompleted })
+            body: JSON.stringify({ ...item ,  completed : !item.completed })
         })
-        
+        setTodo(updatedTodo)
+        console.log(item.completed);
+
     }
 
 
@@ -121,7 +132,7 @@ const DisplayTodo = () => {
 
     useEffect(() => {
         fetchTodo();
-    }, [iscompleted])
+    }, [])
 
 
     return (

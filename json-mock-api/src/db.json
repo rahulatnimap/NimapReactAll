@@ -7,54 +7,6 @@
       "userId": 9
     },
     {
-      "id": "12",
-      "todo": "Have a football scrimmage with some friends",
-      "completed": false,
-      "userId": 32
-    },
-    {
-      "id": "13",
-      "todo": "Text a friend you haven't talked to in a long time",
-      "completed": true,
-      "userId": 2
-    },
-    {
-      "id": "14",
-      "todo": "Organize pantry",
-      "completed": true,
-      "userId": 46
-    },
-    {
-      "id": "15",
-      "todo": "Buy a new house decoration",
-      "completed": false,
-      "userId": 105
-    },
-    {
-      "id": "16",
-      "todo": "Plan a vacation you've always wanted to take",
-      "completed": true,
-      "userId": 162
-    },
-    {
-      "todo": "Clean out car22",
-      "completed": false,
-      "userId": 71,
-      "id": "17"
-    },
-    {
-      "id": "18",
-      "todo": "Draw and color a Mandala",
-      "completed": true,
-      "userId": 6
-    },
-    {
-      "id": "19",
-      "todo": "Create a cookbook with favorite recipes",
-      "completed": true,
-      "userId": 53
-    },
-    {
       "id": "20",
       "todo": "Bake a pie with some friends",
       "completed": true,
@@ -81,13 +33,13 @@
     {
       "id": "24",
       "todo": "Research a topic interested in",
-      "completed": false,
+      "completed": true,
       "userId": 130
     },
     {
       "id": "25",
       "todo": "Plan a trip to another country",
-      "completed": false,
+      "completed": true,
       "userId": 140
     },
     {
@@ -105,8 +57,14 @@
     {
       "id": "29",
       "todo": "Have a photo session with some friends",
-      "completed": false,
+      "completed": true,
       "userId": 91
+    },
+    {
+      "id": "12",
+      "todo": "new test todo",
+      "completed": false,
+      "userId": 1738299696915
     }
   ],
   "total": 254,
