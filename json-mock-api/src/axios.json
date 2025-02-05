@@ -1,0 +1,85 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "firstName": "Emily",
+        "lastName": "Johnson",
+        "age": 28,
+        "username": "emilys",
+        "password": "emilyspass",
+        "birthDate": "1996-5-30",
+        "email": "emily@nimap.com",
+        "image": "https://dummyjson.com/icon/emilys/128",
+        "bank": {
+          "cardExpire": "03/26",
+          "cardNumber": "9289760655481815",
+          "cardType": "Elo",
+          "currency": "CNY",
+          "iban": "YPUXISOBI7TTHPK2BR3HAIXL"
+        },
+        "role": "Admin"
+      },    
+      { 
+        "id": 2,
+        "firstName": "Emily",
+        "lastName": "Johnson",
+        "age": 28,
+        "username": "emilys",
+        "email": "emily@user.com",
+        "password": "emilyspass",
+        "birthDate": "1996-5-30",
+        "image": "https://dummyjson.com/icon/emilys/128",
+        "bank": {
+          "cardExpire": "03/26",
+          "cardNumber": "9289760655481815",
+          "cardType": "Elo",
+          "currency": "CNY",
+          "iban": "YPUXISOBI7TTHPK2BR3HAIXL"
+        },
+        "role": "user"
+      },
+      {
+        "id": 3,
+        "firstName": "Emily",
+        "lastName": "Johnson",
+        "age": 28,
+        "username": "emilys",
+        "email": "emily1@user.com",
+        "password": "emilyspass",
+        "birthDate": "1996-5-30",
+        "image": "https://dummyjson.com/icon/emilys/128",
+        "bank": {
+          "cardExpire": "03/26",
+          "cardNumber": "9289760655481815",
+          "cardType": "Elo",
+          "currency": "CNY",
+          "iban": "YPUXISOBI7TTHPK2BR3HAIXL"
+        },
+        "role": "user"
+      },
+      {
+        "id": 4,
+        "firstName": "Emily",
+        "lastName": "Johnson",
+        "age": 28,
+        "username": "emilys",
+        "email": "emily2@user.com",
+        "password": "emilyspass",
+        "birthDate": "1996-5-30",
+        "image": "https://dummyjson.com/icon/emilys/128",
+        "bank": {
+          "cardExpire": "03/26",
+          "cardNumber": "9289760655481815",
+          "cardType": "Elo",
+          "currency": "CNY",
+          "iban": "YPUXISOBI7TTHPK2BR3HAIXL"
+        },
+        "role": "user"
+      }
+
+      
+    ],
+    "total": 10,
+    "skip": 0,
+    "limit": 5
+  }
