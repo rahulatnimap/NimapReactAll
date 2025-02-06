@@ -9,6 +9,23 @@
         "password": "emilyspass",
         "birthDate": "1996-5-30",
         "email": "emily@nimap.com",
+        "todo" : [
+          {
+            "id": 1,
+            "todo": "Do something nice for someone you care about",
+            "completed": false
+          },
+          {
+            "id": 2,
+            "todo": "Memorize a poem",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "todo": "Watch a classic movie",
+            "completed": true
+          }
+        ],
         "image": "https://dummyjson.com/icon/emilys/128",
         "bank": {
           "cardExpire": "03/26",
@@ -29,6 +46,23 @@
         "password": "emilyspass",
         "birthDate": "1996-5-30",
         "image": "https://dummyjson.com/icon/emilys/128",
+        "todo" : [
+          {
+            "id": 1,
+            "todo": "Do something nice for someone you care about",
+            "completed": false
+          },
+          {
+            "id": 2,
+            "todo": "Memorize a poem",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "todo": "Watch a classic movie",
+            "completed": true
+          }
+        ],
         "bank": {
           "cardExpire": "03/26",
           "cardNumber": "9289760655481815",
@@ -48,6 +82,23 @@
         "password": "emilyspass",
         "birthDate": "1996-5-30",
         "image": "https://dummyjson.com/icon/emilys/128",
+        "todo" : [
+          {
+            "id": 1,
+            "todo": "Do something nice for someone you care about",
+            "completed": false
+          },
+          {
+            "id": 2,
+            "todo": "Memorize a poem",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "todo": "Watch a classic movie",
+            "completed": true
+          }
+        ],
         "bank": {
           "cardExpire": "03/26",
           "cardNumber": "9289760655481815",
@@ -67,6 +118,23 @@
         "password": "emilyspass",
         "birthDate": "1996-5-30",
         "image": "https://dummyjson.com/icon/emilys/128",
+        "todo" : [
+          {
+            "id": 1,
+            "todo": "Do something nice for someone you care about",
+            "completed": false
+          },
+          {
+            "id": 2,
+            "todo": "Memorize a poem",
+            "completed": true
+          },
+          {
+            "id": 3,
+            "todo": "Watch a classic movie",
+            "completed": true
+          }
+        ],
         "bank": {
           "cardExpire": "03/26",
           "cardNumber": "9289760655481815",

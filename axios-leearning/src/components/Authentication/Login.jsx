@@ -24,7 +24,8 @@ const Login = ({ data , singledata}) => {
                         route('/adminDashboard')
                         
                     } else {
-                        singledata(user);
+                        singledata(user.id);
+                        localStorage.setItem('id' , user.id)
                         localStorage.setItem('Token' , 'FakeToken')
                         route('/userDashboard')
                     }

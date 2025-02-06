@@ -2,12 +2,12 @@ import axios from 'axios'
 
 // const Token = 'FakeTokenABC'
 export const axiosInstance = axios.create({
-    baseURL : 'http://localhost:3000'
+    baseURL: 'http://localhost:3000'
 });
 
 axiosInstance.interceptors.request.use(
     (config) => {
-    const Token = localStorage.setItem("authToken" , 'FakeToken');
+        const Token = localStorage.setItem("authToken", 'FakeToken');
         config.headers.Authorization = `Bearer ${Token}`
         return config
     },
@@ -17,13 +17,16 @@ axiosInstance.interceptors.request.use(
 )
 
 axiosInstance.interceptors.response.use(
-    response => response ,
+    response => response,
     (error) => {
         const statuCode = error.response ? error.response.status : null;
 
-        if(statuCode === 404) {
-            console.log("404 Page Not Found")
+        if (statuCode === 404) {
+            console.log("404 Page Not Found");
+
+        } else if (statuCode === 500) {
+            alert("SomeThing Went wrong 500!!");
         }
-        return Promise.reject(error);   
+        return Promise.reject(error);
     }
 )

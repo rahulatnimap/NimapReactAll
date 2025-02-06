@@ -25,6 +25,7 @@ function App() {
   
 
   useEffect(()=>{
+    localStorage.clear('id')
     fecthData();
   },[])
 
