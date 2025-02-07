@@ -10,5 +10,5 @@ export function generateToken(user){
 }
 
 export  function generrateRefresh(user){
-     return jwt.sign({ userid : user.id} , SECRET_KEY)
+     return jwt.sign({ userid : user.id} , SECRET_KEY);
 }

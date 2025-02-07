@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Route, useNavigate } from 'react-router'
+import { generateToken } from '../../jwt-setup/jwt-token-setup';
 
 const Login = ({ data , singledata}) => {
 
@@ -20,7 +21,8 @@ const Login = ({ data , singledata}) => {
                 const user = await userData.find((ele) => (ele.email === userRef.current.value && ele.password === passRef.current.value));
                 if (user) {
                     if (user.role === 'Admin') {
-                        localStorage.setItem('Token' , 'FakeToken')
+                       const token = generateToken(user);
+                       console.log(token);
                         route('/adminDashboard')
                         
                     } else {
