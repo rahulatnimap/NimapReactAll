@@ -1,12 +1,16 @@
 import React, { useRef } from 'react'
-import toast, { Toaster } from 'react-hot-toast'
-import { Route, useNavigate } from 'react-router'
-import { generateToken } from '../../jwt-setup/jwt-token-setup';
+import   { Toaster } from 'react-hot-toast'
+import {   useNavigate } from 'react-router'
+import {generateToken, SECRET_KEY} from '../../jwt-setup/jwt-token-setup.js'
+
+export let token;
+export let  userId;
 
 const Login = ({ data , singledata}) => {
 
     const route = useNavigate();
-    const userData = [...data]
+    const userData = [...data];
+    
     // console.log(userData, 'userData');
 
     const userRef = useRef('');
@@ -15,21 +19,27 @@ const Login = ({ data , singledata}) => {
     const regexpass = /^[a-zA-Z0-9@*]+$/
     function handleSubmit(e) {
         e.preventDefault();
+        // console.log(SECRET_KEY);
+        
 
         async function getuserData() {
             try {
                 const user = await userData.find((ele) => (ele.email === userRef.current.value && ele.password === passRef.current.value));
                 if (user) {
                     if (user.role === 'Admin') {
-                       const token = generateToken(user);
-                       console.log(token);
-                        route('/adminDashboard')
+                    //    console.log(token);
+                     token = await generateToken(user.name);
+                    //  console.log(token , "token");
+                    localStorage.setItem('token' , token)
+                    route('/adminDash')
                         
                     } else {
-                        singledata(user.id);
-                        localStorage.setItem('id' , user.id)
-                        localStorage.setItem('Token' , 'FakeToken')
-                        route('/userDashboard')
+                        token = await generateToken(user.name);
+                     console.log(token , "token");
+                    localStorage.setItem('token' , token)
+                    localStorage.setItem('userId' , user.id)
+                        userId = user.id
+                        route('/userDash')
                     }
                 } else {
                     alert("User not found");

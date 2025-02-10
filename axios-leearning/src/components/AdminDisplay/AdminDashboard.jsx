@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router';
 
 const AdminDashboard = ({data}) => {
   const route = useNavigate()
-  const token = localStorage.getItem('Token');
+  const token = localStorage.getItem('token');
+  
+  console.log(data);
   
   
     const userData = data.filter((ele) => ele.role !== 'admin');
@@ -11,7 +13,7 @@ const AdminDashboard = ({data}) => {
    
     useEffect(()=> {
       if(!token) route('/')
-      },[])
+      },[]);
   return (
     <div>
       <h1>Admin DashBoard</h1>

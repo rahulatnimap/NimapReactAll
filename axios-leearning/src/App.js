@@ -7,6 +7,7 @@ import axios from 'axios'
 import { axiosInstance } from './interceptors/axiosinstance';
 import AdminDashboard from './components/AdminDisplay/AdminDashboard';
 import Userdash from './interceptors/Userdash';
+import ProtectedRoutes from './components/Protected/ProtectedRoutes';
 
 function App() {
 
@@ -33,8 +34,17 @@ function App() {
     <>
   <Routes>
     <Route path='/' element={<Login data = {users} singledata={setSingleUser}/>}/>
-    <Route path='adminDashboard' element={<AdminDashboard data={users}/>}/>
-    <Route path='userDashboard' element={<Userdash data = {singleUser}/>}/>
+    <Route path='/adminDash' element={
+      <ProtectedRoutes>
+        <AdminDashboard data={users}/>
+      </ProtectedRoutes>
+    }/>
+     <Route path='/userDash' element={
+      <ProtectedRoutes>
+       <Userdash/>
+      </ProtectedRoutes>
+    }/>
+  
 
   </Routes>
     </>

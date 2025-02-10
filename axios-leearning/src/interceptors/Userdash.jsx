@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react'
 import { axiosInstance } from './axiosinstance'
 import { useNavigate } from 'react-router';
+import { userId } from '../components/Authentication/Login';
 
 const Userdash = ({ data }) => {
   const route = useNavigate()
-  const token = localStorage.getItem('Token');
-  localStorage.setItem('id', data)
+  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem('userId')
+  // localStorage.setItem('id', data)
 
   useEffect(() => {
-    alert("Please Register First")
-    if (!token) route('/')
+    if (!token) {
+      alert("Please Register First")
+      route('/')
+    }
     else {
       async function fetchSingeruser() {
-        const response = await axiosInstance.get(`/users/${localStorage.getItem('id')}`);
+        const response = await axiosInstance.get(`/users/${userId}`);
         console.log(response.data);
       }
       fetchSingeruser()

@@ -1,14 +1,33 @@
-import jwt from 'jsonwebtoken';
-import cookies from 'js-cookie';
+import { SignJWT , jwtVerify } from 'jose'
+import { token } from '../components/Authentication/Login'
 
-const SECRET_KEY   = 'mYPRIVATE-JWT' 
 
-export function generateToken(user){
-    return jwt.sign({ userid : user.id , username : user.username} , SECRET_KEY , {
-        expiresIn : '15s',
-    });
+export const SECRET_KEY   = new TextEncoder().encode("My-secreted")
+// console.log(SECRET_KEY ,"SecretKey");
+
+
+export async function generateToken(user){
+    return await new SignJWT(user)
+    .setProtectedHeader( {alg : "HS256"})
+    .setIssuedAt()
+    .setExpirationTime("1h")
+    .sign(SECRET_KEY)
 }
 
-export  function generrateRefresh(user){
-     return jwt.sign({ userid : user.id} , SECRET_KEY);
+export async function verifyToken(token){
+    try {
+        const { payload } = await jwtVerify(token , SECRET_KEY);
+        console.log(payload);
+        return payload
+    } catch (error) {
+        console.log(error);  
+    }
+
 }
+
+
+
+// export  function generrateRefresh(user){
+//      return jwt.sign({ userid : user.id} , SECRET_KEY);
+// }
+

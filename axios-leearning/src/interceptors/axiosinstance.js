@@ -1,14 +1,18 @@
 import axios from 'axios'
-
+// import { generateToken } from '../jwt-setup/jwt-token-setup.js'
+import { token } from '../components/Authentication/Login';
 // const Token = 'FakeTokenABC'
 export const axiosInstance = axios.create({
     baseURL: 'http://localhost:3000'
 });
 
+
+
+
+
 axiosInstance.interceptors.request.use(
     (config) => {
-        const Token = localStorage.setItem("authToken", 'FakeToken');
-        config.headers.Authorization = `Bearer ${Token}`
+        config.headers.Authorization = `Bearer ${token}`
         return config
     },
     (error) => {
