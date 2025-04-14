@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "firstName": "testuser2we1",
+      "lastName": "Lastname",
+      "role": "user",
+      "number": "78829347203",
+      "age": "37",
+      "id": "dnomscdm12830"
+    },
+    {
+      "id": "dnomscdm12830",
+      "firstName": "testuser21",
+      "lastName": "testuserLastname",
+      "role": "user",
+      "number": "78829347203",
+      "age": "37"
+    }
+  ]
+}

@@ -2,6 +2,9 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import './App.scss'
 import { PATH } from "./utils/contains.js"
 import PublicRoute from "./Components/shared/routes/PublicRoute.jsx"
+import PrivateRoutes from "./Components/shared/routes/PrivateRoutes.jsx"
+import HomeLayout from "./Components/Layout/HomeLayout.jsx"
+
 
 function App() {
   const routing = createBrowserRouter([
@@ -10,15 +13,25 @@ function App() {
               element : <PublicRoute component = {paths.element}/>
           })),
           {
+            path: "/",
+            element : <PrivateRoutes component={HomeLayout}/>,
+            children: [
+              ...PATH.privatePaths.map((paths) => ({
+                path : paths.path,
+                element : <PrivateRoutes component = {paths.element} /> 
+              })),
+            ]
+          },
+          {
             path: "*",
-            element: <Navigate to="/" />
+            element: <Navigate to="/NotFound" />
           },    
   ])
 
   return (
-    <div>
+    <>
       <RouterProvider router={routing}/>
-    </div>
+    </>
   )
 
 }
