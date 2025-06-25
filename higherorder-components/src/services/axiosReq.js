@@ -1,11 +1,14 @@
 import axios from "axios"
 
-
-const USER = "users"
+export const ENDPOINT = {
+ USER : "users",
+ USERDETAILS : "usersDetails"
+}
 
 const privateapi = axios.create({
- base_Url : "http://localhost:3001"  
+    baseURL : "https://api.freeapi.app/api/v1/public/"  
 })
+
 
 export const privateGET = (endpoint) => {
     return privateapi.get(`${endpoint}`);
@@ -20,7 +23,7 @@ export const privatePut = (endpoint , id , data,   config = {}) => {
 }
 
 export const privateDelete = (endpoint , id ,  config = {}) => {
-    return privateapi.delete(`${endpoint}/${id}` , config);
+    return privateapi.delete(`${endpoint}/${id}`);
 }
 
 export const privatePatch = (endpoint , id , data , config = {}) => {

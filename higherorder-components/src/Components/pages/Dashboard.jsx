@@ -1,13 +1,69 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import  Datagrid  from '../shared/Table/muiTable'
+import { ENDPOINT, privateDelete, privateGET } from '../../services/axiosReq'
+import { IconButton } from '@mui/material'
+import toast from 'react-hot-toast'
 
-const Dashboard = ({ data : userData }) => {
-useEffect(() => {
-  console.log('fetchUser', userData)
-})
+
+
+
+const Dashboard = () => {
+  const [row , setRow] = useState([])
+  const fetchallUsers = async() => {
+      const {data} = await privateGET("randomusers")
+      // console.log('response.data.data', data)
+      setRow(data?.data?.data || [])
+  }
+
+  const handleDelete = async(id) => {
+      // await privateDelete("randomusers" , id)
+     const flteredRow = row.filter((ele) => ele.id !== id)
+     console.log('flteredRow', flteredRow)
+     setRow(flteredRow)
+     toast.success(`User Deleted Successfully`)
+      // fetchallUsers();
+  }
+
+  const column = [
+    {
+        field : 'id' , headerName: "ID" , flex : 1  
+    },
+    {
+      field : 'firstName' , headerName: "First Name"  , flex : 1 , renderCell: (params) => `${params?.row?.name?.first}` || ''
+    },
+    {
+      field : 'lastName' , headerName: "last Name"  , flex : 1 , renderCell: (params) =>  `${params?.row?.name?.last}` || ''
+    },
+    {
+      field : 'dob' , headerName: "Age"  , flex : 1 , renderCell: (params) => params?.value?.age || ''
+    },
+    {
+      field : 'gender' , headerName: "Gender"  , flex : 1  , renderCell : (params) => params?.value || ''
+    },
+    {
+    field : 'email' , headerName: "Email" , flex : 1.5  , renderCell : (params) => params?.value || "XXXXXXXXXX"
+  },
+  {
+    field : 'cell' , headerName: "Number" , flex : 1  ,  renderCell : (params) => params?.value,
+  },
+  {
+    field : 'Action' , headerName: "Action" , flex : 1  , renderCell : (params) => {return <IconButton onClick={()=> handleDelete(params?.row?.id)}>🚮</IconButton>}
+  },
+  ]
+
+  useEffect(()=> {
+    fetchallUsers()
+  // console.log('row', row , row.length)  
+
+  },[])
+
+
   return (
     <div>
          Dashboard
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id assumenda labore incidunt. Et sunt suscipit, numquam impedit eligendi neque iste doloribus doloremque deserunt nihil necessitatibus assumenda distinctio ipsam similique quaerat? Fuga cumque, saepe cum repellendus amet nesciunt aperiam quibusdam in totam eaque voluptas sunt eveniet enim reprehenderit aspernatur blanditiis atque deleniti ex vero corporis repudiandae. Quidem saepe nam velit corporis reiciendis hic maiores mollitia laborum, dicta voluptate explicabo quos distinctio incidunt sit! Voluptatibus est ex aut dolorem sequi aperiam placeat nihil cum, tempore perspiciatis, similique ipsa, quasi reiciendis! Officiis facilis nobis vel magnam asperiores officia eaque quos, mollitia, sint beatae, necessitatibus eligendi nulla odio neque! Suscipit quod vel eligendi itaque ad ducimus, incidunt fugit odio esse qui est, eveniet nisi impedit eius repudiandae! Hic, accusamus obcaecati. Perspiciatis assumenda iste nostrum nobis totam quibusdam qui exercitationem inventore id neque quo quam, culpa tempora molestias veritatis tenetur iusto! Voluptas nostrum distinctio animi amet recusandae accusamus repudiandae! Dolores voluptatibus facilis sequi deserunt praesentium fuga accusamus in totam? Esse sit adipisci totam exercitationem architecto commodi, nisi a mollitia vitae vero molestiae pariatur voluptates, nobis id laboriosam. Illum voluptas repellat consequatur dolorum quidem tempora, id sit nam quae ut ipsum soluta voluptatibus. Nam reprehenderit veniam debitis aliquid sapiente dignissimos nihil amet saepe quos quia, doloremque doloribus! Reiciendis odit, provident itaque debitis dolore, expedita at ut porro odio commodi fugiat. A quisquam omnis in libero aperiam non totam. Laudantium ipsam aut provident dolorum, maxime, voluptas doloremque, iste rerum aliquid explicabo iusto sit. Amet laboriosam culpa deserunt repellendus reiciendis quas quia est reprehenderit expedita dicta ad soluta doloribus itaque sunt exercitationem consequuntur nulla beatae eos qui corporis, labore dolor blanditiis! Quam possimus quo cum fugiat magni incidunt nihil aspernatur earum illum. Vel facere rem porro velit dolorum molestiae, tempore harum. Ab, dicta sit sunt, illo odio laborum obcaecati sint quod unde est neque ipsam voluptatum doloremque? Animi excepturi illum placeat voluptate quisquam velit numquam exercitationem maxime, cum iusto accusantium quasi laudantium quae temporibus beatae alias commodi expedita perspiciatis eius, dolorem libero adipisci cupiditate atque. Ad cumque, voluptates, adipisci suscipit placeat reprehenderit assumenda repellendus quo quibusdam, temporibus dolores fugit nulla obcaecati optio accusamus doloribus corrupti accusantium minus quae quod cum maxime beatae eius corporis. Non numquam quidem modi doloremque voluptas inventore qui soluta. Velit culpa, adipisci vero ullam quis voluptatum quia tenetur perspiciatis eum totam omnis voluptate distinctio nam voluptates ex in iste similique ipsum veritatis. Consequatur, quidem tempora iure minima sit praesentium, eos dolorem temporibus, molestias ipsum ullam deserunt. Id earum libero laudantium est voluptatem necessitatibus officiis optio? Recusandae animi quam sunt ducimus sequi delectus nesciunt mollitia autem, officia temporibus voluptas illum et iste? Asperiores quo molestiae perspiciatis explicabo consectetur earum non, magnam sunt nobis facere eos aspernatur eligendi tempore in, et laborum corporis rerum. Repudiandae ab dolorum fuga sunt officiis voluptatum aspernatur eveniet maxime ex soluta quae facilis, possimus exercitationem temporibus odio ullam nobis illum rerum. Sit laboriosam veritatis totam iure temporibus animi vitae et nostrum inventore ducimus quasi dolorem, dicta, aliquid repellat eveniet voluptatibus. Quod, dolorem?</p>
+         <div>
+          <Datagrid rows={row} columns={column} height={400}  />
+         </div>
     </div>
   )
 }

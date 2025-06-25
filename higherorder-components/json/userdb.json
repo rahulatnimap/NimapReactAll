@@ -1,20 +1,81 @@
 {
-  "users": [
+  "users" : [
+    {
+      "email" : "testuser2we1@mail.com",
+      "password" : "testuser2",
+      "role" : "user",
+      "id":"dnomscdm12830"
+
+    },
+    {
+      "email" : "testuser2we1@mail.com",
+      "password" : "testuser2",
+      "role" : "user",
+      "id":"dnomscdm12830"
+
+    },
+    {
+      "email" : "testuser2we1@mail.com",
+      "password" : "testuser2",
+      "role" : "admin",
+      "id":"dnomscdm12830"
+
+    }
+  ],
+  "usersDetails": [
     {
       "firstName": "testuser2we1",
+      "email" : "testuser2we1@mail.com",
       "lastName": "Lastname",
       "role": "user",
       "number": "78829347203",
       "age": "37",
-      "id": "dnomscdm12830"
+      "id": "dnomscdm12829"
     },
     {
       "id": "dnomscdm12830",
       "firstName": "testuser21",
       "lastName": "testuserLastname",
+      "email" : "testuser2we1@mail.com",
+      "role": "user",
+      "number": "78829347203",
+      "age": "37"
+    },
+    {
+      "id": "dnomscdm12831",
+      "firstName": "testuser21",
+      "lastName": "testuserLastname",
+      "email" : "testuser2we1@mail.com",
+      "role": "user",
+      "number": "78829347203",
+      "age": "37"
+    },
+    {
+      "id": "dnomscdm12832",
+      "firstName": "testuser21",
+      "lastName": "testuserLastname",
+      "email" : "testuser2we1@mail.com",
+      "role": "user",
+      "number": "78829347203",
+      "age": "37"
+    },
+    {
+      "id": "dnomscdm12833",
+      "firstName": "testuser21",
+      "lastName": "testuserLastname",
+      "email" : "testuser2we1@mail.com",
+      "role": "user",
+      "number": "78829347203",
+      "age": "37"
+    },
+    {
+      "id": "dnomscdm12834",
+      "firstName": "testuser21",
+      "lastName": "testuserLastname",
+      "email" : "testuser2we1@mail.com",
       "role": "user",
       "number": "78829347203",
       "age": "37"
     }
-  ]
+  ]  
 }
